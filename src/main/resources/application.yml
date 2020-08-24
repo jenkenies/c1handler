@@ -1,0 +1,48 @@
+spring:
+  datasource:
+    #mysql driver-class-name eg:com.mysql.jdbc.Driver
+    #mysql url eg:jdbc:mysql://172.20.1.100:3306/sop?characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false
+    #mysql validation-query: select 1
+    #oracle validation-query: select 1 from dual
+    #oracle driver-class-name eg:oracle.jdbc.driver.OracleDriver
+    #oracle url eg:jdbc:oracle:thin:@172.20.1.100:1521:orcl
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    druid:
+      url: jdbc:oracle:thin:@172.20.1.100:1521:orcl
+      username: sop6021
+      password: sop6021
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      max-wait: 30000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: select 1 from dual
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-open-prepared-statements: 20
+      max-pool-prepared-statement-per-connection-size: 20
+      filters: stat
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        reset-enable: false
+        login-username: druid
+        login-password: druid123
+      filter:
+        stat:
+          log-slow-sql: true
+  jpa:
+    show-sql: false
+server:
+  port: 8012
+  servlet:
+    context-path: /c1handler
+logging:
+  file: /opt/wacos/server/c1handler/log/c1handler.log
